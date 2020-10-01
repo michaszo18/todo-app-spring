@@ -8,6 +8,7 @@ class TodoAppApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// info: test integracyjny sprawdzający czy wszystko się załadowało
 	}
 
 }
