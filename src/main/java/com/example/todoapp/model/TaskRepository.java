@@ -15,6 +15,8 @@ public interface TaskRepository {
 
     List<Task> findByDone(@Param("state") boolean done);
 
+    boolean existsById(Integer id);
+
     Optional<Task> findById(Integer i);
 
     Task save(Task entity);
