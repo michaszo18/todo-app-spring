@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Table(name = "tasks")
 @Getter
 @Setter
-class Task {
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
