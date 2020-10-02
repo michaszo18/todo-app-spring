@@ -11,4 +11,4 @@ spring:
     username: 'sa'
     password:
 
-task.allowMultipleTasksFromTemplate: false
+task.template.allowMultipleTasks: false
