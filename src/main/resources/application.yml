@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: '/console'
+  datasource:
+    url: 'jdbc:h2:file:C:/Users/michal.szostek/Documents/todo-app/todoDB'
+    username: 'sa'
+    password:
+
+task.allowMultipleTasksFromTemplate: false
