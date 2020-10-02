@@ -33,4 +33,12 @@ public class Task {
     public int getId() {
         return this.id;
     }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 }

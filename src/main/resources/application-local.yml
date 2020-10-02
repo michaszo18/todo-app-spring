@@ -10,5 +10,6 @@ spring:
     url: 'jdbc:h2:file:C:/Users/michal.szostek/Documents/todo-app/todoDB'
     username: 'sa'
     password:
-
-task.template.allowMultipleTasks: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
