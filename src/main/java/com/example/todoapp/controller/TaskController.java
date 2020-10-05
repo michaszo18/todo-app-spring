@@ -51,6 +51,7 @@ class TaskController {
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
 
+    @Transactional
     @PutMapping("/tasks/{id}")
     ResponseEntity<?> updateTask(@PathVariable int id, @RequestBody @Valid Task toUpdate) {
 
@@ -63,8 +64,12 @@ class TaskController {
             logger.error("PUT: " + toUpdate.getId() + " put id is not equal with id");
         }
 
-        toUpdate.setId(id);
-        repository.save(toUpdate);
+        repository.findById(id)
+                .ifPresent(task -> {
+                    task.updateFrom(toUpdate);
+                    repository.save(task);
+                });
+
         return ResponseEntity.noContent().build();
     }
 

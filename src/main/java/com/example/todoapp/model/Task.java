@@ -5,11 +5,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tasks")
-@Getter
-@Setter
 public class Task {
 
     @Id
@@ -18,16 +17,15 @@ public class Task {
     @NotBlank(message = "Wiadomość nie może być pusta")
     private String description;
     private boolean done;
+    private LocalDateTime deadline;
+    private LocalDateTime createdOn;
+    private LocalDateTime updatedOn;
 
     public Task() {
     }
 
     public String getDescription() {
         return this.description;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getId() {
@@ -40,5 +38,29 @@ public class Task {
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
+
+    public void updateFrom(final Task source) {
+        this.description = source.description;
+        this.done = source.done;
+        this.deadline = source.deadline;
+    }
+
+    @PrePersist
+    void prePersist() {
+        this.createdOn = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    void updatePersist() {
+        this.updatedOn = LocalDateTime.now();
     }
 }
