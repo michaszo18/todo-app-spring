@@ -14,12 +14,20 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @NotBlank(message = "Wiadomość nie może być pusta")
     private String description;
+
     private boolean done;
+
     private LocalDateTime deadline;
+
     @Embedded
     private Audit audit = new Audit();
+
+    @ManyToOne
+    @JoinColumn(name = "task_group_id")
+    private TaskGroup group;
 
 
     public Task() {
@@ -49,10 +57,19 @@ public class Task {
         this.deadline = deadline;
     }
 
+    TaskGroup getGroup() {
+        return group;
+    }
+
+    void setGroup(TaskGroup group) {
+        this.group = group;
+    }
+
     public void updateFrom(final Task source) {
         this.description = source.description;
         this.done = source.done;
         this.deadline = source.deadline;
+        this.group = source.group;
     }
 
 }
