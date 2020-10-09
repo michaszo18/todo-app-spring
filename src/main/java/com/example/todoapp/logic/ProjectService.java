@@ -31,7 +31,7 @@ public class ProjectService {
     }
 
     public GroupReadModel createGroup(LocalDateTime deadline, int projectId) {
-        if (config.getTemplate().isAllowMultipleTasks() && taskGroupRepository.existsByDoneIsFalseAndProject_Id(projectId)) {
+        if (!config.getTemplate().isAllowMultipleTasks() && taskGroupRepository.existsByDoneIsFalseAndProject_Id(projectId)) {
             throw new IllegalStateException("Grupa może posiadać tylko jeden projekt");
         }
 
