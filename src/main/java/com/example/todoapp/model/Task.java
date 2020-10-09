@@ -14,23 +14,23 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @NotBlank(message = "Wiadomość nie może być pusta")
     private String description;
-
     private boolean done;
-
     private LocalDateTime deadline;
-
     @Embedded
     private Audit audit = new Audit();
-
     @ManyToOne
     @JoinColumn(name = "task_group_id")
     private TaskGroup group;
 
 
     public Task() {
+    }
+
+    public Task( String description, LocalDateTime deadline) {
+        this.description = description;
+        this.deadline = deadline;
     }
 
     public String getDescription() {
